@@ -6,7 +6,7 @@
     ·
     <a href="https://github.com/olive-groves/butterfly_registrator">GitHub↗</a>
     <br>
-    <a href="https://github.com/olive-groves/butterfly_viewer">Butterfly Viewer↗</a>
+    <a href="https://olive-groves.github.io/butterfly_viewer/butterfly_viewer.html">Butterfly Viewer↗</a>
   </big>
 </p>
 
