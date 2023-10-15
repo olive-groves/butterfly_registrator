@@ -22,7 +22,7 @@
   <i>Alphascale conversion of grayscale XRF element maps¹, then shown in <a href="https://olive-groves.github.io/butterfly_viewer/butterfly_viewer.html">Butterfly Viewer</a></i>
 </p>
 
-Butterfly Registrator is a preprocessing app for aligning images using pairs of control points you click and drag. It helps you align (or [*register*](#how-does-the-registrator-register-images)) images to a given reference such that their heights and widths match and the features within those images line up, making it easy to later overlay and compare them without the hassle of manually zooming, stretching, and cropping them beforehand.
+Butterfly Registrator is a preprocessing app for aligning images using pairs of control points you click and drag. It helps you align (or [*register*](#how-does-registration-work)) images to a given reference such that their heights and widths match and the features within those images line up, making it easy to later overlay and compare them without the hassle of manually zooming, stretching, and cropping them beforehand.
 
 The Registrator also creates alphascale images. You can convert individual grayscale images using a color picker and also merge multiple alphascale images into a single image.
 
@@ -30,7 +30,7 @@ The Registrator runs as an [installable Windows executable](#windows-executable)
 
 Most types of PNG, JPEG, and TIFF can be loaded into the Registrator. It can likewise save registered image files to PNG, JPEG, and TIFF.
 
-With [Butterfly Viewer<sup>↗</sup>](https://olive-groves.github.io/butterfly_viewer/butterfly_viewer.html) you can rapidly compare your registered images with sliding overlays and synchronized side-by-side pan and zoom. The Viewer is handy for visually inspecting painting research data such as high-res and raking-light photos, X-rays, and element maps from XRF and RIS — especially with element maps [converted to alphascale](#convert-to-alphascale).
+With [Butterfly Viewer<sup>↗</sup>](https://olive-groves.github.io/butterfly_viewer/butterfly_viewer.html) you can rapidly compare your registered images with sliding overlays and synchronized side-by-side pan and zoom. The Viewer is handy for visually inspecting painting research data such as high-res and raking-light photos, X-rays, and element maps from XRF and RIS — especially with element maps [converted to alphascale](#convert-to-alphascale-from-grayscale).
 
 ### Key features
 
