@@ -135,11 +135,12 @@ You can find various ways online on how to run an executable (EXE) via the comma
 
 Once the installer loads, follow the onscreen steps to install the Registrator:
 - Accept the agreement. The license is [GNU GPL v3.0<sup>↗</sup>](https://www.gnu.org/licenses/gpl-3.0.en.html) or later.
-- Choose to create a desktop shortcut. This can be useful to have.
 - Choose the install folder. The default should be ok.
   <br>
   > *Updating with a newer version? First [uninstall the old version](#uninstall) and then re-run the new installer.
 
+- Choose the Start Menu folder. The default should be ok, but you don't need to create a Start Menu folder to use the app.
+- Choose to create a desktop shortcut. This can be useful to have.
 - Install.
 - Restart. **Restart recommended** to avoid issues with drag-and-drop not working.
 
