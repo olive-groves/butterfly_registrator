@@ -38,6 +38,8 @@ Most types of PNG, JPEG, and TIFF can be loaded into the Registrator. It can lik
 
 With [Butterfly Viewer](https://olive-groves.github.io/butterfly_viewer) you can rapidly compare your registered images with sliding overlays and synchronized side-by-side pan and zoom. The Viewer is handy for visually inspecting painting research data such as high-res and raking-light photos, X-rays, and element maps from XRF and RIS — especially with element maps [converted to alphascale](#convert-to-alphascale).
 
+<sup>¹*Small Pear Tree in Blossom* by Vincent van Gogh (Van Gogh Museum, Amsterdam)</sup>
+
 ## Key features
 
 - **Side-by-side image previews** to rapidly check the accuracy of registration and make adjustments before saving a copy.
@@ -45,8 +47,6 @@ With [Butterfly Viewer](https://olive-groves.github.io/butterfly_viewer) you can
 - **Batch mode** to apply the same registration to multiple images of the same capture/perspective, which is useful for registering element maps from scanning X-ray fluorescence (XRF) and reflectance imaging spectroscopy (RIS) to a ground truth like a color photograph.
 
 - **Save registration control points to CSV** to easily document and trace the images you register, and import later if you want to reproduce or adjust a registration.
-
-<sup>¹*Small Pear Tree in Blossom* by Vincent van Gogh (Van Gogh Museum, Amsterdam)</sup>
 
 ## How-to's
 
