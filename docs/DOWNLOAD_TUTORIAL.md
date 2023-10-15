@@ -102,11 +102,12 @@ Extract `butterfly_registrator_v1.y.z_win64_setup.exe` from the ZIP:
 If you have admin privileges, run the installer by double-clicking on `butterfly_registrator_v1.y.z_win64_setup.exe`:
 
 1. Double-click on `butterfly_registrator_v1.y.z_win64_setup.exe`.
-2. Select **More info**.
-3. Select **Run anyway**.
+2. Windows Defender SmartScreen may show a pop-up. If not, skip to step 5.
+3. Select **More info**.
+4. Select **Run anyway**.
   <br>
   <sup>No **Run anyway**? Select **Don't run** and [try Option 2.](#option-2-without-admin-privileges)</sup>
-4. Wait for the installer to load. This may take a few seconds.
+5. Wait for the installer to load. This may take a few seconds.
 
 ![Sequence of screenshots showing how to run the Butterfly Registrator installer by double-clicking it.](images/install/install_admin.jpg)
 
