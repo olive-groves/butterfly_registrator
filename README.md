@@ -12,20 +12,16 @@
   </ul>
 </div>
 
-<h1 align="center"> 
-  Butterfly Registrator
-</h1>
-
 <p align="center">
-  <img src="https://olive-groves.github.io/butterfly_registrator/images/tutorial/batch_start.jpg" alt="Screenshot of the Butterfly Registrator showing control points on a reference image and moving image, with the registered result previewed in a sliding overlay.">
+  <img src="https://github.com/olive-groves/butterfly_registrator/blob/docs/docs/images/registrator_registration.gif" alt="Animated screencapture of the Butterfly Registrator showing control points on a reference image and moving image, with the registered result previewed in a sliding overlay.">
   <br />
   <i>Registering an XRF element map to a color image¹</i>
 </p>
 
 <p align="center">
-  <img src="https://olive-groves.github.io/butterfly_registrator/images/tutorial/alphascale_color_picker.jpg" alt="Screenshot of the Butterfly Registrator showing the alphascale converter.">
+  <img src="https://github.com/olive-groves/butterfly_registrator/blob/docs/docs/images/registrator_alphascale.gif" alt="Animated screencapture of the Butterfly Registrator showing the alphascale converter, and then the Butterfly Viewer showing a sliding overlay with multiple alphascale images over a reference photo.">
   <br />
-  <i>Alphascale conversion of a grayscale XRF element map¹</i>
+  <i>Alphascale conversion of a grayscale XRF element map¹, then shown in sliding overlay with <a href="https://github.com/olive-groves/butterfly_viewer">Butterfly Viewer</a></i>
 </p>
 
 Butterfly Registrator is a preprocessing app for aligning images using pairs of control points you click and drag. It helps you align (or [*register*](https://olive-groves.github.io/butterfly_registrator/butterfly_registrator.html#how-does-registration-work)) images to a given reference such that their heights and widths match and the features within those images line up, making it easy to later overlay and compare them without the hassle of manually zooming, stretching, and cropping them beforehand.
