@@ -40,7 +40,7 @@ With [Butterfly Viewer<sup>↗</sup>](https://olive-groves.github.io/butterfly_v
 
 - **Save registration control points to CSV** to easily document and trace the images you register, and import later if you want to reproduce or adjust a registration.
 
-<sup>¹*Small Pear Tree in Blossom* by Vincent van Gogh (Van Gogh Museum, Amsterdam)</sup>
+<sup>¹*Small Pear Tree in Blossom* by Vincent van Gogh. Credits: Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)</sup>
 
 # Download and install
 
@@ -218,13 +218,13 @@ There are a couple ways to run the Registrator with Python. Here's one way using
 
 > Sample images: [`VGM_Datapackage_2023000_Butterfly_Images_V20231003.zip`<sup>↗</sup>](https://vgm.data.surfsara.nl/index.php/s/S3b4dnayUDKHtLA)
 >
-> <sup>**Credits: Van Gogh Museum, Amsterdam** · **133 MB extracted**</sup>
+> <sup>**Credits: Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)** · **133 MB extracted**</sup>
 
 This tutorial shows you how to register images with the Butterfly Registrator using a stack of sample technical images of Vincent van Gogh's *Small Pear Tree in Blossom*. We'll also cover how to convert grayscale images to alphascale and merge multiple alphascale images, all within the Registrator.
 
 ## Download sample Van Gogh images
 
-Download the [ZIP of sample technical images<sup>↗</sup>](https://vgm.data.surfsara.nl/index.php/s/S3b4dnayUDKHtLA) of *Small Pear Tree in Blossom* by Vincent van Gogh, with credits to the Van Gogh Museum, Amsterdam.
+Download the [ZIP of sample technical images<sup>↗</sup>](https://vgm.data.surfsara.nl/index.php/s/S3b4dnayUDKHtLA) of *Small Pear Tree in Blossom* by Vincent van Gogh, with credits to the Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation).
 
 ![Screenshot of the download button for the tutorial's sample images.](images/tutorial/download_images.jpg)
 
