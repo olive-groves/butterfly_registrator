@@ -34,7 +34,7 @@ Most types of PNG, JPEG, and TIFF can be loaded into the Registrator. It can lik
 
 With [Butterfly Viewer](https://olive-groves.github.io/butterfly_viewer) you can rapidly compare your registered images with sliding overlays and synchronized side-by-side pan and zoom. The Viewer is handy for visually inspecting painting research data such as high-res and raking-light photos, X-rays, and element maps from XRF and RIS — especially with element maps [converted to alphascale](https://olive-groves.github.io/butterfly_registrator/butterfly_registrator.html#convert-to-alphascale-from-grayscale).
 
-<sup>¹*Small Pear Tree in Blossom* by Vincent van Gogh (Van Gogh Museum, Amsterdam)</sup>
+<sup>¹*Small Pear Tree in Blossom* by Vincent van Gogh. Credits: Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)</sup>
 
 ## Key features
 
