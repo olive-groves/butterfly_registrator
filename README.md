@@ -28,7 +28,8 @@ Butterfly Registrator is a preprocessing app for aligning images using pairs of 
 
 The Registrator also creates alphascale images. You can convert individual grayscale images using a color picker and also merge multiple alphascale images into a single image.
 
-The Registrator runs as an [installable Windows executable](https://olive-groves.github.io/butterfly_registrator/butterfly_registrator.html#windows-executable) or directly on its [Python source code](https://olive-groves.github.io/butterfly_registrator/butterfly_registrator.html#python).
+The Registrator runs as an [installable Windows executable](https://olive-groves.github.io/butterfly_registrator/butterfly_registrator.html#windows-executable) or directly on its [Python source code](https://olive-groves.github.io/butterfly_registrator/butterfly_registrator.html#python). 
+For Macs, sign up to [beta test the macOS version](https://olive-groves.github.io/butterfly_registrator/butterfly_registrator.html#macos-app).
 
 Most types of PNG, JPEG, and TIFF can be loaded into the Registrator. It can likewise save registered image files to PNG, JPEG, and TIFF.
 
@@ -49,6 +50,8 @@ With [Butterfly Viewer](https://olive-groves.github.io/butterfly_viewer) you can
 Our [Butterfly Registrator page](https://olive-groves.github.io/butterfly_registrator) documents how to install and use the Registrator, as well how contribute to it as a developer. 
 
 ### Install as [Windows executable](https://olive-groves.github.io/butterfly_registrator/butterfly_registrator.html#windows-executable)
+
+### Sign up to [beta test the macOS app](https://olive-groves.github.io/butterfly_registrator/butterfly_registrator.html#macos-app)
 
 ### Run on [Python](https://olive-groves.github.io/butterfly_registrator/butterfly_registrator.html#python)
 
