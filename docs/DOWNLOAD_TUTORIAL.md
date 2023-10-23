@@ -27,6 +27,7 @@ Butterfly Registrator is a preprocessing app for aligning images using pairs of 
 The Registrator also creates alphascale images. You can convert individual grayscale images using a color picker and also merge multiple alphascale images into a single image.
 
 The Registrator runs as an [installable Windows executable](#windows-executable) or directly on its [Python source code](#python).
+Use a Mac? Sign up to [beta test the macOS version](#macos-app).
 
 Most types of PNG, JPEG, and TIFF can be loaded into the Registrator. It can likewise save registered image files to PNG, JPEG, and TIFF.
 
@@ -47,6 +48,8 @@ With [Butterfly Viewer<sup>↗</sup>](https://olive-groves.github.io/butterfly_v
 You can download and install Butterfly Registrator to run:
 - as a [Windows executable](#windows-executable); or 
 - directly with [Python](#python).
+
+If you use a MacBook or iMac, you can sign up to [beta test the macOS version](#macos-app).
 
 ## Windows executable
 
@@ -158,6 +161,17 @@ To run the Registrator, search for **Butterfly Registrator** in the Start menu (
 ### Uninstall
 
 You can uninstall the Registrator executable from Windows by going to **Add or remove programs** via the Start menu, selecting **Butterfly Registrator**, and then selecting **Uninstall**. 
+
+---
+
+## macOS app
+
+![Screenshot of Butterfly Viewer on macOS.](images/install/macOS.png)
+
+Sign up to [beta test the macOS version<sup>↗<sup>](https://forms.gle/y9QeT6MLgHszU1su5) of Butterfly Registrator on your MacBook or iMac. 
+You'll receive a download link once the beta version is ready.
+
+With your help, we can get a working macOS app for both the Butterfly Registrator and Butterfly Viewer.
 
 ---
 
