@@ -272,7 +272,17 @@ We'll use the Registrator to do all of that alignment — the *registration* —
 
 > ### How it works
 >
-> Registration works by first designating a reference image, loading the image you wish to align (*register*) to that reference, automatically resizing and padding it to the dimensions of that reference, and finally applying a perspective transform to match the pairs of control points which you position on both images.
+> Registration works by combining these manual steps (things you do) and *automatic* steps:
+>
+> 1. Select the reference
+> 2. Load the image you wish to align (register) to that reference
+> 3. *Resize and pad that image to the dimensions of the reference*
+> 4. Drag the pairs of control points on both images
+> 5. *Apply a perspective transform*
+> 6. Compare the registered image with the reference 
+> 7. Repeat steps 4–6 to refine the registration.
+> 
+> Registered images you save with the Registrator can be opened with any software you use with images, including [Butterfly Viewer<sup>↗</sup>](https://olive-groves.github.io/butterfly_viewer/butterfly_viewer.html).
 >
 > <br>
 >
@@ -659,15 +669,7 @@ You can submit a [feature request<sup>↗</sup>](https://github.com/olive-groves
 ![GitHub New Issue page showing bug report and feature request options.](images/tutorial/bug_feature_issue.jpg)
 
 
-## How does registration work?
-
-Registration works by first designating a reference image, loading the image you wish to align (*register*) to that reference, automatically resizing and padding it to the dimensions of that reference, and finally applying a perspective transform to match the pairs of control points which you position on both images.
-
-Registered images you save with the Registrator can be opened with any software you use with images, including [Butterfly Viewer<sup>↗</sup>](https://olive-groves.github.io/butterfly_viewer/butterfly_viewer.html).
-
-![Illustration of how registration is done in the Registrator.](images/tutorial/illustrate_registration.jpg)
-
-![Illustration itself shown in the Registrator.](images/tutorial/illustrate_registrator.jpg)
+## [How does registration work?](#how-it-works)
 
 ## What is alphascale?
 

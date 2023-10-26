@@ -44,7 +44,7 @@
   <ul>
     <li><a href="#report-a-bug">Report a bug?</a></li>
     <li><a href="#request-new-feature">Request new feature?</a></li>
-    <li><a href="#how-does-registration-work">How does registration work?</a></li>
+    <li><a href="#how-does-registration-workhow-it-works"><a href="#how-it-works">How does registration work?</a></a></li>
     <li><a href="#what-is-alphascale">What is alphascale?</a></li>
   </ul></li>
   <li><a href="#developers">Developers</a>
@@ -395,7 +395,19 @@ You'll receive a download link once the beta version is ready.</p>
 <blockquote>
   <h3 id="how-it-works">How it works</h3>
   
-  <p>Registration works by first designating a reference image, loading the image you wish to align (<em>register</em>) to that reference, automatically resizing and padding it to the dimensions of that reference, and finally applying a perspective transform to match the pairs of control points which you position on both images.</p>
+  <p>Registration works by combining these manual steps (things you do) and <em>automatic</em> steps:</p>
+  
+  <ol>
+  <li>Select the reference</li>
+  <li>Load the image you wish to align (register) to that reference</li>
+  <li><em>Resize and pad that image to the dimensions of the reference</em></li>
+  <li>Drag the pairs of control points on both images</li>
+  <li><em>Apply a perspective transform</em></li>
+  <li>Compare the registered image with the reference </li>
+  <li>Repeat steps 4–6 to refine the registration.</li>
+  </ol>
+  
+  <p>Registered images you save with the Registrator can be opened with any software you use with images, including <a href="https://olive-groves.github.io/butterfly_viewer/butterfly_viewer.html">Butterfly Viewer<sup>↗</sup></a>.</p>
   
   <p><br></p>
   
@@ -805,15 +817,7 @@ To be registered  1677.97   2554.12
 
 <p><img src="images/tutorial/bug_feature_issue.jpg" alt="GitHub New Issue page showing bug report and feature request options." /></p>
 
-<h2 id="how-does-registration-work">How does registration work?</h2>
-
-<p>Registration works by first designating a reference image, loading the image you wish to align (<em>register</em>) to that reference, automatically resizing and padding it to the dimensions of that reference, and finally applying a perspective transform to match the pairs of control points which you position on both images.</p>
-
-<p>Registered images you save with the Registrator can be opened with any software you use with images, including <a href="https://olive-groves.github.io/butterfly_viewer/butterfly_viewer.html">Butterfly Viewer<sup>↗</sup></a>.</p>
-
-<p><img src="images/tutorial/illustrate_registration.jpg" alt="Illustration of how registration is done in the Registrator." /></p>
-
-<p><img src="images/tutorial/illustrate_registrator.jpg" alt="Illustration itself shown in the Registrator." /></p>
+<h2 id="how-does-registration-workhow-it-works"><a href="#how-it-works">How does registration work?</a></h2>
 
 <h2 id="what-is-alphascale">What is alphascale?</h2>
 
