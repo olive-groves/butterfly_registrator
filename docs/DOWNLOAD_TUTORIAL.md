@@ -436,7 +436,7 @@ First, make sure you have the Registrator open with the following:
 
 - the control points* positioned on the two images as done in [the previous part of the tutorial](#register-individual-images).
   
-> *To skip manually placing the control points, you can [download a copy of the control points CSV](Registration_points-s0039V1962_Zn_MAXRF-to-s0039V1962_b_crop.csv) and load it in the Registrator with 'Load control points from .csv...'.
+> *To skip manually placing the control points, you can [download a copy of the control points CSV](https://github.com/olive-groves/butterfly_registrator/releases/download/v1.0/Registration_points-s0039V1962_Zn_MAXRF-to-s0039V1962_b_crop.csv) and load it in the Registrator with 'Load control points from .csv...'.
 
 ![Screenshot of the Registrator ready for batch mode.](images/tutorial/batch_start.jpg)
 
