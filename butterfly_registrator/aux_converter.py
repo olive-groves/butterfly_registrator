@@ -171,6 +171,7 @@ class FileTypeConverter(QtWidgets.QWidget):
         self.filetype_select_prompt.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
         self.filetype_select_combo = QtWidgets.QComboBox()
         self.filetype_select_combo.addItem("Select...")
+        self.filetype_select_extension = None
         self.filetype_items = ["*.jpeg", "*.jpg", "*.png", "*.tiff", "*.tif", "*.bmp"]
         self.filetype_filters = ["*.jpeg, *.jpg", "*.png", "*.tiff, *.tif", "*.bmp"]
         self.filetype_names = ["JPEG image files", "PNG image files", "TIFF image files", "BMP"]
@@ -272,32 +273,54 @@ class FileTypeConverter(QtWidgets.QWidget):
     def selected_filetype_combo_index(self, index):
         """TODO: Finish docstring."""
         if index > 0:
-            self.do_selected_files_already_exist_with_filetype()
-            # if do_files_already_exist_with_filetype():
-            #     text = "One or more files are already this filetype."
-            #     self.filetype_select_label.setText()
+            filetype_extension = self.filetype_select_combo.currentText().strip("*")
+
+            if self.do_selected_files_already_exist_with_filetype(filetype_extension=filetype_extension):
+                text = "Heads-up: One or more files already are this filetype, so this conversion will be redundant"
+            else:
+                text = ""
+            
+            self.filetype_select_label.setText(text)
+
+            self.filetype_select_extension = filetype_extension
             self.filetype_select_widget.is_finished = True
         else:
+            self.filetype_select_extension = None
             self.filetype_select_widget.is_finished = False
 
-    def do_selected_files_already_exist_with_filetype(self, remove_existing_files_from_list=False):
+    def do_selected_files_already_exist_with_filetype(self, filetype_extension=None, remove_existing_files_from_list=False):
         """TODO: Finish docstring."""
+        selected_files_already_exist_with_filetype = False
+        filetype_extension = filetype_extension
         fullpaths = self.images_select_fullpaths
-        self.filetype_select_combo.currentIndex()
 
-        if not fullpaths: # If files is empty list
+        if not filetype_extension: # If no filetype given
+            return False
+        elif not fullpaths: # If files is empty list
             return False
         elif not self.filetype_select_combo.currentIndex(): # If combobox at index 0
             return False
-        
+                
         # For each path
-        # Get the fileextension
-        # And compare with the selected filetype
-        # True if the same
-        filetype = str(self.filetype_select_combo.currentText()).strip("*.")
-        # fullpaths_filtered = [fullpath for fullpath in fullpaths if ]
+        for fullpath in fullpaths:
+            if self.change_fullpath_extension(fullpath, filetype_extension) == fullpath:
+                selected_files_already_exist_with_filetype = True
 
+        return selected_files_already_exist_with_filetype
 
+    def change_fullpath_extension(self, fullpath, extension):
+        """
+        Args:
+            fullpath (str): Original fullpath.
+            extension (str): File type extensions with period. Example ".jpg", ".tiff".
+
+        Returns:
+            new_fullpath (str): New fullpath with extension.
+        """
+        original_fullpath = fullpath
+        new_extension = extension
+        new_fullpath = os.path.splitext(original_fullpath)[0] + new_extension
+        return new_fullpath
 
     def select_destination_via_dialog(self):
         """Open an open dialog window to select a destination folder to which to save the converted file(s)."""
@@ -338,10 +361,20 @@ class FileTypeConverter(QtWidgets.QWidget):
         converting images. This of course involves rewriting the code with 
         pyvips, but it also means adding/installing the libvips .dlls and
         adding it to PATH for pyvips to find. I'm not certain how easy this is 
-        when creating the executable and installer.
+        when creating the executable and installer for Windows and MacOS.
         """
-        print("convert")
-
+        text_prefix = "Converting and saving"
+        extension = self.filetype_select_extension
+        for i, fullpath in enumerate(self.images_select_fullpaths):
+            self.convert_save_label.setText(text_prefix + " {i}")
+            img = imread(fullpath, IMREAD_UNCHANGED)
+            new_fullpath = self.change_fullpath_extension(fullpath, extension)
+            if new_fullpath.endswith('.jpg') or new_fullpath.endswith('.jpeg'):
+                imwrite(new_fullpath, img, [int(IMWRITE_JPEG_QUALITY), 100])
+            else:
+                imwrite(new_fullpath, img)
+        self.convert_save_widget.is_finished = True
+        self.convert_save_label.setText("Finished")
 
 class Converter(QtWidgets.QWidget):
     """Parent interface to hold the image file type converter.

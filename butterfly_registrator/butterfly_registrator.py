@@ -1925,13 +1925,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.register_widget = Registrator()
         self.register_widget.loading.connect(self.loading)
         self.alphascale_creator_widget = aux_alphascale_creator.Alphascaler()
-        # self.converter_widget = aux_converter.Converter()
-        # self.converter_widget.loading.connect(self.loading)
+        self.converter_widget = aux_converter.Converter()
+        self.converter_widget.loading.connect(self.loading)
 
         self.tab_widget = QtWidgets.QTabWidget()
         self.tab_widget.addTab(self.register_widget, "Register")
         self.tab_widget.addTab(self.alphascale_creator_widget, "Alphascale")
-        # self.tab_widget.addTab(self.converter_widget, "File Type Converter")
+        self.tab_widget.addTab(self.converter_widget, "File Type Converter")
 
         self.about_button = AboutButton(margin=1)
         sp = "<br>"
