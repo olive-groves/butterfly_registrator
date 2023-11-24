@@ -14,6 +14,7 @@ Features:
 
 import os
 import time
+import traceback, sys
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import numpy as np
@@ -141,6 +142,76 @@ class ConverterStepRow(QtWidgets.QWidget):
         self.finished.emit(value)
 
 
+class WorkerSignals(QtCore.QObject):
+    '''
+    Defines the signals available from a running worker thread.
+
+    Supported signals are:
+
+    finished
+        No data
+
+    error
+        tuple (exctype, value, traceback.format_exc() )
+
+    result
+        object data returned from processing, anything
+
+    progress
+        int indicating % progress
+
+    '''
+    finished = QtCore.pyqtSignal()
+    error = QtCore.pyqtSignal(tuple)
+    result = QtCore.pyqtSignal(object)
+    progress = QtCore.pyqtSignal(int)
+
+
+class Worker(QtCore.QRunnable):
+    '''
+    Worker thread
+
+    Inherits from QRunnable to handler worker thread setup, signals and wrap-up.
+
+    :param callback: The function callback to run on this worker thread. Supplied args and
+                     kwargs will be passed through to the runner.
+    :type callback: function
+    :param args: Arguments to pass to the callback function
+    :param kwargs: Keywords to pass to the callback function
+
+    '''
+
+    def __init__(self, fn, *args, **kwargs):
+        super(Worker, self).__init__()
+
+        # Store constructor arguments (re-used for processing)
+        self.fn = fn
+        self.args = args
+        self.kwargs = kwargs
+        self.signals = WorkerSignals()
+
+        # Add the callback to our kwargs
+        self.kwargs['progress_callback'] = self.signals.progress
+
+    @QtCore.pyqtSlot()
+    def run(self):
+        '''
+        Initialise the runner function with passed args, kwargs.
+        '''
+
+        # Retrieve args/kwargs here; and fire processing using them
+        try:
+            result = self.fn(*self.args, **self.kwargs)
+        except:
+            traceback.print_exc()
+            exctype, value = sys.exc_info()[:2]
+            self.signals.error.emit((exctype, value, traceback.format_exc()))
+        else:
+            self.signals.result.emit(result)  # Return the result of the processing
+        finally:
+            self.signals.finished.emit()  # Done
+
+
 class FileTypeConverter(QtWidgets.QWidget):
     """Interface for converting the file types of images.
     
@@ -159,6 +230,8 @@ class FileTypeConverter(QtWidgets.QWidget):
     def __init__(self):
 
         super().__init__()
+
+        self.threadpool = QtCore.QThreadPool()
 
         self.images_select_button = QtWidgets.QPushButton("Select image(s)...")
         self.images_select_button.clicked.connect(self.select_images_via_dialog)
@@ -190,7 +263,7 @@ class FileTypeConverter(QtWidgets.QWidget):
         self.destination_select_directory = None
 
         self.convert_save_button = QtWidgets.QPushButton("Convert and save image(s)")
-        self.convert_save_button.clicked.connect(self.convert_and_save_images)
+        self.convert_save_button.clicked.connect(self.save_button_clicked)
         self.convert_save_widget = ConverterStepRow()
         self.convert_save_widget.addWidget(self.convert_save_button)
         self.convert_save_widget.setEnabled(False)
@@ -321,6 +394,21 @@ class FileTypeConverter(QtWidgets.QWidget):
         new_extension = extension
         new_fullpath = os.path.splitext(original_fullpath)[0] + new_extension
         return new_fullpath
+    
+    def change_fullpath_directory(self, fullpath, directory):
+        """
+        Args:
+            fullpath (str): Original fullpath.
+            directory (str): Directory to which the new fullpath should have.
+
+        Returns:
+            new_fullpath (str): New fullpath with directory.
+        """
+        original_fullpath = fullpath
+        new_directory = directory
+        new_fullpath = new_directory + '/' + original_fullpath.split('/')[-1]
+        print(new_fullpath)
+        return new_fullpath
 
     def select_destination_via_dialog(self):
         """Open an open dialog window to select a destination folder to which to save the converted file(s)."""
@@ -340,7 +428,7 @@ class FileTypeConverter(QtWidgets.QWidget):
     def destination_selected(self, directory: str):
         """str: Indicate destination selected with its directory."""
         self.destination_select_directory = directory
-        if self.destination_select_directory is None:
+        if self.destination_select_directory == None:
             return
         text = f"{directory}"
         self.destination_select_label.setText(text)
@@ -349,11 +437,14 @@ class FileTypeConverter(QtWidgets.QWidget):
 
     def destination_not_selected(self):
         """Indicate destination not selected."""
-        self.destination_select_directory = []
+        self.destination_select_directory = None
         self.destination_select_widget.is_finished = False
         self.destination_select_label.setText("")
 
-    def convert_and_save_images(self):
+    def save_button_clicked(self):
+        self.thread_convert_and_save_images()
+
+    def convert_and_save_images(self, progress_callback):
         """TODO: Conversion function. 
         
         Lars: I want to switch image processing to pyvips instead of cv2 as it 
@@ -363,18 +454,50 @@ class FileTypeConverter(QtWidgets.QWidget):
         adding it to PATH for pyvips to find. I'm not certain how easy this is 
         when creating the executable and installer for Windows and MacOS.
         """
-        text_prefix = "Converting and saving"
         extension = self.filetype_select_extension
-        for i, fullpath in enumerate(self.images_select_fullpaths):
-            self.convert_save_label.setText(text_prefix + " {i}")
+        fullpaths = self.images_select_fullpaths
+        directory = self.destination_select_directory
+        n = len(fullpaths)
+        for i, fullpath in enumerate(fullpaths):
             img = imread(fullpath, IMREAD_UNCHANGED)
             new_fullpath = self.change_fullpath_extension(fullpath, extension)
+            new_fullpath = self.change_fullpath_directory(new_fullpath, directory)
             if new_fullpath.endswith('.jpg') or new_fullpath.endswith('.jpeg'):
                 imwrite(new_fullpath, img, [int(IMWRITE_JPEG_QUALITY), 100])
             else:
                 imwrite(new_fullpath, img)
+            progress_callback.emit((i+1)*100/n)
         self.convert_save_widget.is_finished = True
         self.convert_save_label.setText("Finished")
+        return "Done."
+
+    def progress_fn(self, n):
+        self.convert_save_label.setText("Converting and saving %d%%" % n)
+
+    # def execute_this_fn(self, progress_callback):
+    #     for n in range(0, 5):
+    #         time.sleep(1)
+    #         progress_callback.emit(n*100/4)
+
+    #     return "Done."
+
+    def print_output(self, s):
+        print(s)
+
+    def thread_complete(self):
+        print("THREAD COMPLETE!")
+
+    def thread_convert_and_save_images(self):
+        # Pass the function to execute
+        worker = Worker(self.convert_and_save_images) # Any other args, kwargs are passed to the run function
+        worker.signals.result.connect(self.print_output)
+        worker.signals.finished.connect(self.thread_complete)
+        worker.signals.progress.connect(self.progress_fn)
+
+        # Disable interface
+        # Execute
+        self.threadpool.start(worker)
+        # Enable interface
 
 class Converter(QtWidgets.QWidget):
     """Parent interface to hold the image file type converter.
