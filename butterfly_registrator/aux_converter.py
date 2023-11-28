@@ -477,7 +477,13 @@ class FileTypeConverter(QtWidgets.QWidget):
     
     def read_image(self, fullpath):
         """Returns cv2 image (NumPy array) read using a fullpath (str)."""
+        if fullpath.endswith(".png"): # Preserve the alpha channel if a PNG.
             img = imread(fullpath, IMREAD_UNCHANGED)
+            if img.ndim is 2: # ...but if the PNG is monochannel, redo the imread and let cv2 determine how.
+                img = imread(fullpath) 
+        else:
+            img = imread(fullpath)
+        img = img.astype('uint8')
         return img
 
     def progress_fn(self, n):
