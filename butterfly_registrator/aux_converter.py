@@ -459,17 +459,26 @@ class FileTypeConverter(QtWidgets.QWidget):
         directory = self.destination_select_directory
         n = len(fullpaths)
         for i, fullpath in enumerate(fullpaths):
-            img = imread(fullpath, IMREAD_UNCHANGED)
+            img = self.read_image(fullpath)
             new_fullpath = self.change_fullpath_extension(fullpath, extension)
             new_fullpath = self.change_fullpath_directory(new_fullpath, directory)
-            if new_fullpath.endswith('.jpg') or new_fullpath.endswith('.jpeg'):
-                imwrite(new_fullpath, img, [int(IMWRITE_JPEG_QUALITY), 100])
-            else:
-                imwrite(new_fullpath, img)
+            self.write_image(new_fullpath, img)
             progress_callback.emit((i+1)*100/n)
         self.convert_save_widget.is_finished = True
         self.convert_save_label.setText("Finished")
         return "Done."
+    
+    def write_image(self, fullpath, img):
+        """Writes image using a fullpath(str) and a cv2 image (NumPy array)."""
+        if fullpath.endswith('.jpg') or fullpath.endswith('.jpeg'):
+            imwrite(fullpath, img, [int(IMWRITE_JPEG_QUALITY), 100])
+        else:
+            imwrite(fullpath, img)
+    
+    def read_image(self, fullpath):
+        """Returns cv2 image (NumPy array) read using a fullpath (str)."""
+            img = imread(fullpath, IMREAD_UNCHANGED)
+        return img
 
     def progress_fn(self, n):
         self.convert_save_label.setText("Converting and saving %d%%" % n)
